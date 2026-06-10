@@ -916,10 +916,10 @@
     if (answers.q4 === 'fine'  && s.electrician)  score += 1;
 
     // Q5 full spectrum
-    if (answers.q5 === 'yes' && !s.fullSpectrum) { reasons.push('Far infrared only — not full spectrum'); score -= 6; }
+    if (answers.q5 === 'yes' && !s.fullSpectrum) { reasons.push('Far infrared only — not full spectrum'); score -= 10; }
     if (answers.q5 === 'yes' &&  s.fullSpectrum) score += 3;
-    if (answers.q5 === 'no'  &&  s.fullSpectrum) score -= 1;
-    if (answers.q5 === 'no'  && !s.fullSpectrum) score += 1;
+    if (answers.q5 === 'no'  &&  s.fullSpectrum) { reasons.push('Full spectrum — you said far infrared is fine'); score -= 10; }
+    if (answers.q5 === 'no'  && !s.fullSpectrum) score += 2;
 
     return { score, reasons };
   }
