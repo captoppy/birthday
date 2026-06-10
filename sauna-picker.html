@@ -545,7 +545,7 @@
   <!-- ══════════════ Q1 ══════════════ -->
   <div class="screen active" id="screen-1">
     <div class="question-block">
-      <p class="q-number">Question 1 of 5</p>
+      <p class="q-number">Question 1 of 6</p>
       <h2 class="q-text">Where would you want the sauna to sit?</h2>
       <p class="q-sub">We have a gas heater on one wall and a sliding door + window on another — some saunas can only go in specific spots.</p>
     </div>
@@ -580,7 +580,7 @@
   <!-- ══════════════ Q2 ══════════════ -->
   <div class="screen" id="screen-2">
     <div class="question-block">
-      <p class="q-number">Question 2 of 5</p>
+      <p class="q-number">Question 2 of 6</p>
       <h2 class="q-text">Blocking the gas heater — deal breaker?</h2>
       <p class="q-sub">A couple of saunas need to sit in front of the gas heater. Would that bother you?</p>
     </div>
@@ -615,7 +615,7 @@
   <!-- ══════════════ Q3 ══════════════ -->
   <div class="screen" id="screen-3">
     <div class="question-block">
-      <p class="q-number">Question 3 of 5</p>
+      <p class="q-number">Question 3 of 6</p>
       <h2 class="q-text">Glass panels — see-through or solid?</h2>
       <p class="q-sub">Some saunas have clear glass. Others are fully opaque. Which feels more like you?</p>
     </div>
@@ -650,7 +650,7 @@
   <!-- ══════════════ Q4 ══════════════ -->
   <div class="screen" id="screen-4">
     <div class="question-block">
-      <p class="q-number">Question 4 of 5</p>
+      <p class="q-number">Question 4 of 6</p>
       <h2 class="q-text">How much mood lighting do you want?</h2>
       <p class="q-sub">Chromotherapy lights set the atmosphere. Some have 7 colours, others have 10 colours + 17 separate backlight moods.</p>
     </div>
@@ -685,7 +685,7 @@
   <!-- ══════════════ Q5 ══════════════ -->
   <div class="screen" id="screen-5">
     <div class="question-block">
-      <p class="q-number">Question 5 of 5</p>
+      <p class="q-number">Question 5 of 6</p>
       <h2 class="q-text">Electrician install — does the cost matter?</h2>
       <p class="q-sub">Most saunas need a licensed electrician to install a dedicated circuit. One option just plugs straight into a standard power point and skips that cost entirely.</p>
     </div>
@@ -713,7 +713,42 @@
       </div>
     </div>
     <div class="btn-wrap">
-      <button class="btn-next" id="next5" disabled onclick="showResults()">See my sauna 🎁</button>
+      <button class="btn-next" id="next5" disabled onclick="goTo(6)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════ Q6 ══════════════ -->
+  <div class="screen" id="screen-6">
+    <div class="question-block">
+      <p class="q-number">Question 6 of 6</p>
+      <h2 class="q-text">Full spectrum or far infrared?</h2>
+      <p class="q-sub">Full spectrum saunas run hotter and are considered more premium — they cover near, mid and far infrared. Far infrared is still highly effective and more common. Does it matter to you?</p>
+    </div>
+    <div class="choices three-col">
+      <div class="choice-card" data-value="yes" onclick="pick(this,'q6')">
+        <div class="choice-icon">🔥</div>
+        <div class="choice-body">
+          <p class="choice-label">Yes — full spectrum</p>
+          <p class="choice-desc">I want the hottest, most premium option</p>
+        </div>
+      </div>
+      <div class="choice-card" data-value="no" onclick="pick(this,'q6')">
+        <div class="choice-icon">♨️</div>
+        <div class="choice-body">
+          <p class="choice-label">Far infrared is fine</p>
+          <p class="choice-desc">No need for full spectrum — far infrared does the job</p>
+        </div>
+      </div>
+      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q6')">
+        <div class="choice-icon">🤷</div>
+        <div class="choice-body">
+          <p class="choice-label">Not fussed</p>
+          <p class="choice-desc">Either works for me</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn-next" id="next6" disabled onclick="showResults()">See my sauna 🎁</button>
     </div>
   </div>
 
@@ -752,9 +787,10 @@
         { icon: 'check', text: '7 chromotherapy colours' },
         { icon: 'check', text: 'Clear see-through glass panels' },
         { icon: 'check', text: 'Bluetooth speaker' },
+        { icon: 'x',    text: 'Far infrared only — not full spectrum' },
         { icon: 'x',    text: 'Flat wall placement — cannot go in a corner' },
       ],
-      corner: false, blocksHeater: true, panels: 'clear', lighting: 'basic', electrician: true,
+      corner: false, blocksHeater: true, panels: 'clear', lighting: 'basic', electrician: true, fullSpectrum: false,
     },
     {
       id: 'kiva-radiance',
@@ -769,10 +805,11 @@
         { icon: 'check', text: 'Only partially covers the sliding door if in right corner' },
         { icon: 'check', text: '10 chromo colours + 17 mood backlights' },
         { icon: 'check', text: 'Clear see-through glass panels' },
+        { icon: 'check', text: 'Full spectrum infrared — near, mid & far' },
         { icon: 'check', text: 'Bluetooth speaker' },
         { icon: 'check', text: 'Single bench' },
       ],
-      corner: true, blocksHeater: false, panels: 'clear', lighting: 'full', electrician: true,
+      corner: true, blocksHeater: false, panels: 'clear', lighting: 'full', electrician: true, fullSpectrum: true,
     },
     {
       id: 'kiva-commercial',
@@ -787,10 +824,11 @@
         { icon: 'check', text: 'Only partially covers the sliding door if in right corner' },
         { icon: 'check', text: '10 chromo colours + 17 mood backlights' },
         { icon: 'check', text: 'Solid obscured panels — full privacy inside' },
+        { icon: 'check', text: 'Full spectrum infrared — near, mid & far' },
         { icon: 'check', text: 'Bluetooth speaker' },
         { icon: 'check', text: 'Single bench' },
       ],
-      corner: true, blocksHeater: false, panels: 'obscured', lighting: 'full', electrician: true,
+      corner: true, blocksHeater: false, panels: 'obscured', lighting: 'full', electrician: true, fullSpectrum: true,
     },
     {
       id: 'halo',
@@ -807,7 +845,7 @@
         { icon: 'check', text: 'Bluetooth speaker' },
         { icon: 'check', text: 'Single bench' },
       ],
-      corner: false, blocksHeater: true, panels: 'any', lighting: 'basic', electrician: false,
+      corner: false, blocksHeater: true, panels: 'any', lighting: 'basic', electrician: false, fullSpectrum: false,
     },
     {
       id: 'kylin',
@@ -825,7 +863,7 @@
         { icon: 'check', text: 'Bluetooth speaker' },
         { icon: 'check', text: 'Single bench' },
       ],
-      corner: true, blocksHeater: false, panels: 'any', lighting: 'basic', electrician: false,
+      corner: true, blocksHeater: false, panels: 'any', lighting: 'basic', electrician: false, fullSpectrum: false,
     },
   ];
 
@@ -846,9 +884,9 @@
   function goTo(n) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById('screen-' + n).classList.add('active');
-    const pct = ((n - 1) / 5) * 100;
+    const pct = ((n - 1) / 6) * 100;
     document.getElementById('progressBar').style.width = pct + '%';
-    document.getElementById('progressLabel').textContent = 'Question ' + n + ' of 5';
+    document.getElementById('progressLabel').textContent = 'Question ' + n + ' of 6';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -887,6 +925,12 @@
     if (answers.q5 === 'avoid' && s.electrician)  score -= 2;
     if (answers.q5 === 'avoid' && !s.electrician) score += 4;
     if (answers.q5 === 'fine'  && s.electrician)  score += 1;
+
+    // Q6 full spectrum
+    if (answers.q6 === 'yes' && !s.fullSpectrum) { reasons.push('Far infrared only — not full spectrum'); score -= 6; }
+    if (answers.q6 === 'yes' &&  s.fullSpectrum) score += 3;
+    if (answers.q6 === 'no'  &&  s.fullSpectrum) score -= 1;
+    if (answers.q6 === 'no'  && !s.fullSpectrum) score += 1;
 
     return { score, reasons };
   }
