@@ -357,8 +357,8 @@
       border: 2px solid var(--border);
       border-radius: 18px;
       overflow: hidden;
-      display: grid;
-      grid-template-columns: 240px 1fr;
+      display: flex;
+      flex-direction: column;
     }
     .sauna-card.top-pick {
       border-color: var(--purple-light);
@@ -367,14 +367,12 @@
 
     .sauna-card-img {
       position: relative;
-      min-height: 200px;
+      width: 100%;
       background: var(--surface);
-      overflow: hidden;
     }
     .sauna-card-img img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
     }
     .badge {
@@ -526,7 +524,6 @@
       .choice-card.fussed .choice-icon { height: 56px; }
 
       .sauna-card { grid-template-columns: 1fr; }
-      .sauna-card-img { height: 180px; min-height: unset; }
 
       .btn-next { width: 100%; min-width: unset; }
       .btn-back  { width: 100%; }
