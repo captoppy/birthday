@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Birthday Surprise 🎁</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0F0B1A;
+      --surface:  #1A1428;
+      --card:     #211932;
+      --border:   #2E2245;
+      --purple:   #7C3AED;
+      --purple-light: #A855F7;
+      --purple-glow:  #C084FC;
+      --pink:     #EC4899;
+      --text:     #EDE9F6;
+      --muted:    #8B7AA8;
+      --softer:   #4B3F6B;
+      --green:    #34D399;
+      --amber:    #FBBF24;
+      --red:      #F87171;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #0F0B1A 0%, #1E1040 45%, #2D1B69 100%);
+      text-align: center;
+      padding: 72px 24px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 60%, rgba(124,58,237,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 80% 30%, rgba(236,72,153,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--purple-glow);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(34px, 6vw, 60px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .hero h1 em {
+      font-style: italic;
+      background: linear-gradient(90deg, var(--purple-glow), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 16px;
+      color: rgba(237,233,246,0.65);
+      max-width: 460px;
+      margin: 0 auto;
+      line-height: 1.65;
+      position: relative;
+    }
+    .steam-line {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 28px 0 0;
+      position: relative;
+    }
+    .steam-line span {
+      font-size: 28px;
+      animation: float 3s ease-in-out infinite;
+    }
+    .steam-line span:nth-child(2) { animation-delay: 0.5s; }
+    .steam-line span:nth-child(3) { animation-delay: 1s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50%       { transform: translateY(-9px); opacity: 1; }
+    }
+
+    /* ── PROGRESS ── */
+    .progress-wrap {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .progress-bar-outer {
+      flex: 1;
+      max-width: 380px;
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-bar-inner {
+      height: 100%;
+      background: linear-gradient(90deg, var(--purple), var(--pink));
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+    .progress-label {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 88px;
+      text-align: right;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 52px 20px 80px;
+    }
+
+    /* ── SCREEN MANAGEMENT ── */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* ── QUESTION BLOCK ── */
+    .question-block {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .q-number {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 12px;
+    }
+    .q-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .q-sub {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ── CHOICE GRID ── */
+    .choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .choices.three-col {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    /* "Not fussed" card spans full width when it's alone in last row */
+    .choice-card.fussed {
+      grid-column: 1 / -1;
+    }
+    /* But only when it's the 3rd card in a 2-col grid OR fits naturally */
+    .choices:not(.three-col) .choice-card.fussed {
+      grid-column: 1 / -1;
+    }
+    .choices.three-col .choice-card.fussed {
+      grid-column: auto;
+    }
+
+    .choice-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+    }
+    .choice-card:hover {
+      border-color: var(--purple);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px rgba(124,58,237,0.22);
+    }
+    .choice-card.chosen {
+      border-color: var(--purple-light);
+      background: #261B40;
+      box-shadow: 0 0 0 1px var(--purple-light), 0 8px 28px rgba(124,58,237,0.3);
+    }
+    .choice-card.chosen::after {
+      content: '✓';
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 22px;
+      height: 22px;
+      background: var(--purple);
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 22px;
+    }
+
+    .choice-icon {
+      width: 100%;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      background: linear-gradient(135deg, #1A1030, #251848);
+    }
+    .choice-card.fussed .choice-icon {
+      height: 80px;
+      font-size: 36px;
+    }
+    .choice-body {
+      padding: 14px 14px 18px;
+    }
+    .choice-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+    .choice-card.fussed .choice-label {
+      color: var(--muted);
+    }
+    .choice-card.fussed:hover .choice-label,
+    .choice-card.fussed.chosen .choice-label {
+      color: var(--purple-glow);
+    }
+    .choice-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── INFO NOTE ── */
+    .info-note {
+      background: #1E1535;
+      border: 1px solid #3A2860;
+      border-left: 3px solid var(--purple);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #A99CC4;
+      line-height: 1.55;
+      margin: 20px 0 0;
+    }
+
+    /* ── NEXT BUTTON ── */
+    .btn-wrap { text-align: center; margin-top: 30px; }
+    .btn-next {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      color: white;
+      border: none;
+      padding: 14px 44px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+    }
+    .btn-next:hover:not(:disabled) {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(124,58,237,0.5);
+    }
+    .btn-next:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ── RESULTS ── */
+    .results-intro {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .results-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 38px);
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .results-intro p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .results-count {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      color: white;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+
+    /* ── SAUNA RESULT CARDS ── */
+    .sauna-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .sauna-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 270px 1fr;
+    }
+    .sauna-card.top-pick {
+      border-color: var(--purple-light);
+      box-shadow: 0 0 0 1px var(--purple), 0 12px 40px rgba(124,58,237,0.25);
+    }
+
+    .sauna-card-img {
+      position: relative;
+      min-height: 220px;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .sauna-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+    }
+    .badge.best {
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      color: white;
+      border: none;
+    }
+
+    .sauna-card-body {
+      padding: 22px 22px 18px;
+      display: flex;
+      flex-direction: column;
+    }
+    .sauna-brand {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 6px;
+    }
+    .sauna-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+    .feature-list li {
+      font-size: 13px;
+      color: #C4B8DC;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.4;
+    }
+    .fi { flex-shrink: 0; margin-top: 1px; font-style: normal; }
+    .fi-check { color: var(--green); }
+    .fi-warn  { color: var(--amber); }
+    .fi-x     { color: var(--red); }
+
+    .sauna-footer { margin-top: auto; }
+    .btn-view {
+      display: inline-block;
+      background: transparent;
+      color: var(--purple-glow);
+      text-decoration: none;
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--purple);
+      transition: all 0.2s;
+    }
+    .btn-view:hover {
+      background: var(--purple);
+      color: white;
+    }
+
+    /* ── ELIMINATED ── */
+    .eliminated-section {
+      margin-top: 44px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .eliminated-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--softer);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .eliminated-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .eliminated-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      opacity: 0.6;
+    }
+    .eliminated-card img {
+      width: 70px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .eliminated-name { font-weight: 500; font-size: 14px; color: var(--text); }
+    .eliminated-reason { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+    /* ── RESTART ── */
+    .btn-restart {
+      display: inline-block;
+      margin-top: 40px;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 11px 32px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-restart:hover {
+      border-color: var(--purple);
+      color: var(--purple-glow);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .choices { grid-template-columns: 1fr; }
+      .choices.three-col { grid-template-columns: 1fr; }
+      .choice-card.fussed { grid-column: auto; }
+      .sauna-card { grid-template-columns: 1fr; }
+      .sauna-card-img { height: 190px; min-height: unset; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-tag">A birthday surprise — just for you ✨</p>
+  <h1>Pick Your Perfect<br /><em>Infrared Sauna</em></h1>
+  <p>Answer five quick questions and we'll find the sauna that fits your life — and our home — perfectly.</p>
+  <div class="steam-line">
+    <span>🌿</span><span>♨️</span><span>🌸</span>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-bar-outer">
+    <div class="progress-bar-inner" id="progressBar" style="width:0%"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">Let's get started</div>
+</div>
+
+<main>
+
+  <!-- ══════════════ Q1 ══════════════ -->
+  <div class="screen active" id="screen-1">
+    <div class="question-block">
+      <p class="q-number">Question 1 of 5</p>
+      <h2 class="q-text">Where would you want the sauna to sit?</h2>
+      <p class="q-sub">We have a gas heater on one wall and a sliding door + window on another — some saunas can only go in specific spots.</p>
+    </div>
+    <div class="choices">
+      <div class="choice-card" data-value="corner" onclick="pick(this,'q1')">
+        <div class="choice-icon">🏠</div>
+        <div class="choice-body">
+          <p class="choice-label">Tucked in a corner</p>
+          <p class="choice-desc">Out of the way, makes good use of the corner space</p>
+        </div>
+      </div>
+      <div class="choice-card" data-value="wall" onclick="pick(this,'q1')">
+        <div class="choice-icon">🧱</div>
+        <div class="choice-body">
+          <p class="choice-label">Against a flat wall</p>
+          <p class="choice-desc">Centred on one wall — doesn't need a corner</p>
+        </div>
+      </div>
+      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q1')">
+        <div class="choice-icon">🤷</div>
+        <div class="choice-body">
+          <p class="choice-label">Not fussed — wherever it fits</p>
+          <p class="choice-desc">Any placement is fine by me</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn-next" id="next1" disabled onclick="goTo(2)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════ Q2 ══════════════ -->
+  <div class="screen" id="screen-2">
+    <div class="question-block">
+      <p class="q-number">Question 2 of 5</p>
+      <h2 class="q-text">Blocking the gas heater — deal breaker?</h2>
+      <p class="q-sub">A couple of saunas need to sit in front of the gas heater. Would that bother you?</p>
+    </div>
+    <div class="choices">
+      <div class="choice-card" data-value="no" onclick="pick(this,'q2')">
+        <div class="choice-icon">🚫</div>
+        <div class="choice-body">
+          <p class="choice-label">Yes, don't block it</p>
+          <p class="choice-desc">I want the heater fully accessible — cross those off the list</p>
+        </div>
+      </div>
+      <div class="choice-card" data-value="yes" onclick="pick(this,'q2')">
+        <div class="choice-icon">👍</div>
+        <div class="choice-body">
+          <p class="choice-label">Fine by me</p>
+          <p class="choice-desc">We can work around it — the sauna is the priority</p>
+        </div>
+      </div>
+      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q2')">
+        <div class="choice-icon">🤷</div>
+        <div class="choice-body">
+          <p class="choice-label">Not fussed</p>
+          <p class="choice-desc">Doesn't change anything for me</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn-next" id="next2" disabled onclick="goTo(3)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════ Q3 ══════════════ -->
+  <div class="screen" id="screen-3">
+    <div class="question-block">
+      <p class="q-number">Question 3 of 5</p>
+      <h2 class="q-text">Glass panels — see-through or solid?</h2>
+      <p class="q-sub">Some saunas have clear glass. Others are fully opaque. Which feels more like you?</p>
+    </div>
+    <div class="choices three-col">
+      <div class="choice-card" data-value="clear" onclick="pick(this,'q3')">
+        <div class="choice-icon">🪟</div>
+        <div class="choice-body">
+          <p class="choice-label">Clear glass</p>
+          <p class="choice-desc">Open and airy — less enclosed</p>
+        </div>
+      </div>
+      <div class="choice-card" data-value="obscured" onclick="pick(this,'q3')">
+        <div class="choice-icon">🌫️</div>
+        <div class="choice-body">
+          <p class="choice-label">Solid panels</p>
+          <p class="choice-desc">Private and cosy — proper sanctuary vibes</p>
+        </div>
+      </div>
+      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q3')">
+        <div class="choice-icon">🤷</div>
+        <div class="choice-body">
+          <p class="choice-label">Not fussed</p>
+          <p class="choice-desc">Happy with either</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn-next" id="next3" disabled onclick="goTo(4)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════ Q4 ══════════════ -->
+  <div class="screen" id="screen-4">
+    <div class="question-block">
+      <p class="q-number">Question 4 of 5</p>
+      <h2 class="q-text">How much mood lighting do you want?</h2>
+      <p class="q-sub">Chromotherapy lights set the atmosphere. Some have 7 colours, others have 10 colours + 17 separate backlight moods.</p>
+    </div>
+    <div class="choices three-col">
+      <div class="choice-card" data-value="basic" onclick="pick(this,'q4')">
+        <div class="choice-icon">🕯️</div>
+        <div class="choice-body">
+          <p class="choice-label">Keep it simple</p>
+          <p class="choice-desc">A few colours is all I need</p>
+        </div>
+      </div>
+      <div class="choice-card" data-value="full" onclick="pick(this,'q4')">
+        <div class="choice-icon">🌈</div>
+        <div class="choice-body">
+          <p class="choice-label">More the better</p>
+          <p class="choice-desc">Loads of colour modes to play with</p>
+        </div>
+      </div>
+      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q4')">
+        <div class="choice-icon">🤷</div>
+        <div class="choice-body">
+          <p class="choice-label">Not fussed</p>
+          <p class="choice-desc">Doesn't matter to me</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn-next" id="next4" disabled onclick="goTo(5)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════ Q5 ══════════════ -->
+  <div class="screen" id="screen-5">
+    <div class="question-block">
+      <p class="q-number">Question 5 of 5</p>
+      <h2 class="q-text">Electrician install — does the cost matter?</h2>
+      <p class="q-sub">Most saunas need a licensed electrician to install a dedicated circuit. One option just plugs straight into a standard power point and skips that cost entirely.</p>
+    </div>
+    <div class="choices">
+      <div class="choice-card" data-value="fine" onclick="pick(this,'q5')">
+        <div class="choice-icon">🔌</div>
+        <div class="choice-body">
+          <p class="choice-label">Fine — worth it</p>
+          <p class="choice-desc">One-time install cost is no big deal if the sauna is right</p>
+        </div>
+      </div>
+      <div class="choice-card" data-value="avoid" onclick="pick(this,'q5')">
+        <div class="choice-icon">💰</div>
+        <div class="choice-body">
+          <p class="choice-label">Prefer to avoid it</p>
+          <p class="choice-desc">Plug-and-play would be a nice bonus</p>
+        </div>
+      </div>
+      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q5')">
+        <div class="choice-icon">🤷</div>
+        <div class="choice-body">
+          <p class="choice-label">Not fussed</p>
+          <p class="choice-desc">Doesn't change my opinion</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn-next" id="next5" disabled onclick="showResults()">See my sauna 🎁</button>
+    </div>
+  </div>
+
+  <!-- ══════════════ RESULTS ══════════════ -->
+  <div class="screen" id="screen-results">
+    <div class="results-intro">
+      <span class="results-count" id="resultsCount"></span>
+      <h2>Here are your matches</h2>
+      <p id="resultsSubtitle"></p>
+    </div>
+    <div class="sauna-cards" id="matchedCards"></div>
+    <div class="eliminated-section" id="eliminatedSection" style="display:none;">
+      <h3>Ruled out based on your answers</h3>
+      <div class="eliminated-list" id="eliminatedCards"></div>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn-restart" onclick="restart()">← Start over</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  // ── SAUNA DATA ────────────────────────────────────────────────
+  const saunas = [
+    {
+      id: 'kiva-rise',
+      brand: 'Kiva Wellness',
+      name: 'Kiva Rise Far-Infrared',
+      img: 'https://kivawellness.com.au/cdn/shop/files/rise4p.webp?v=1774428789',
+      url: 'https://kivawellness.com.au/products/kiva-wellness-far-infrared-sauna-4-person',
+      features: [
+        { icon: 'warn', text: 'Needs a licensed electrician to install' },
+        { icon: 'warn', text: 'Sits in front of the gas heater' },
+        { icon: 'check', text: 'Two benches — more seating options' },
+        { icon: 'check', text: '7 chromotherapy colours' },
+        { icon: 'check', text: 'Clear see-through glass panels' },
+        { icon: 'x',    text: 'Flat wall placement — cannot go in a corner' },
+      ],
+      corner: false, blocksHeater: true, panels: 'clear', lighting: 'basic', electrician: true,
+    },
+    {
+      id: 'kiva-radiance',
+      brand: 'Kiva Wellness',
+      name: 'Radiance Full Spectrum',
+      img: 'https://kivawellness.com.au/cdn/shop/files/10_1.webp?v=1768372158',
+      url: 'https://kivawellness.com.au/products/radiance-full-spectrum-sauna-4-person',
+      features: [
+        { icon: 'warn', text: 'Needs a licensed electrician to install' },
+        { icon: 'check', text: 'Corner placement — tucks away neatly' },
+        { icon: 'warn', text: 'Will cover the window' },
+        { icon: 'warn', text: 'Partially covers the sliding door' },
+        { icon: 'check', text: '10 chromo colours + 17 mood backlights' },
+        { icon: 'check', text: 'Clear see-through glass panels' },
+        { icon: 'x',    text: 'Single bench only' },
+      ],
+      corner: true, blocksHeater: false, panels: 'clear', lighting: 'full', electrician: true,
+    },
+    {
+      id: 'kiva-commercial',
+      brand: 'Kiva Wellness',
+      name: 'Radiance Commercial Grade',
+      img: 'https://kivawellness.com.au/cdn/shop/files/10_1.webp?v=1768372158',
+      url: 'https://kivawellness.com.au/products/radiance-4-person-commercial-grade-full-spectrum-infrared-sauna',
+      features: [
+        { icon: 'warn', text: 'Needs a licensed electrician to install' },
+        { icon: 'check', text: 'Corner placement — tucks away neatly' },
+        { icon: 'warn', text: 'Will cover the window' },
+        { icon: 'warn', text: 'Partially covers the sliding door' },
+        { icon: 'check', text: '10 chromo colours + 17 mood backlights' },
+        { icon: 'check', text: 'Solid obscured panels — full privacy inside' },
+        { icon: 'x',    text: 'Single bench only' },
+      ],
+      corner: true, blocksHeater: false, panels: 'obscured', lighting: 'full', electrician: true,
+    },
+    {
+      id: 'halo',
+      brand: 'Halo Spas',
+      name: 'Halo Sauna 4I',
+      img: 'https://www.halospas.com.au/wp-content/uploads/2024/05/Halo-Sauna-4-seater.jpg',
+      url: 'https://www.halospas.com.au/halo-sauna-2i-sauna-4i/',
+      features: [
+        { icon: 'warn', text: 'Needs a licensed electrician to install' },
+        { icon: 'warn', text: 'Sits in front of the gas heater' },
+        { icon: 'check', text: 'Single bench' },
+        { icon: 'warn', text: 'Some specs still to be confirmed' },
+      ],
+      corner: false, blocksHeater: true, panels: 'any', lighting: 'basic', electrician: true,
+    },
+    {
+      id: 'kylin',
+      brand: 'Kylin Australia',
+      name: 'Kylin Carbon Infrared',
+      img: 'https://kylinaustralia.com.au/cdn/shop/products/HL-500K.jpg',
+      imgFallback: 'https://kylinaustralia.com.au/cdn/shop/files/HL500K.jpg',
+      url: 'https://kylinaustralia.com.au/products/kylin-carbon-infrared-sauna-room-4-person-hl-500k',
+      features: [
+        { icon: 'check', text: 'No electrician needed — standard power point' },
+        { icon: 'check', text: 'Corner placement — tucks away neatly' },
+        { icon: 'warn', text: 'Will cover the window' },
+        { icon: 'warn', text: 'Partially covers the sliding door' },
+        { icon: 'check', text: 'Multiple colour options' },
+        { icon: 'check', text: 'Single bench' },
+      ],
+      corner: true, blocksHeater: false, panels: 'any', lighting: 'basic', electrician: false,
+    },
+  ];
+
+  // ── STATE ─────────────────────────────────────────────────────
+  const answers = {};
+
+  // ── PICK ──────────────────────────────────────────────────────
+  function pick(el, q) {
+    el.parentElement.querySelectorAll('.choice-card').forEach(c => c.classList.remove('chosen'));
+    el.classList.add('chosen');
+    answers[q] = el.dataset.value;
+    const idx = q.replace('q', '');
+    const btn = document.getElementById('next' + idx);
+    if (btn) btn.disabled = false;
+  }
+
+  // ── NAVIGATION ────────────────────────────────────────────────
+  function goTo(n) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + n).classList.add('active');
+    const pct = ((n - 1) / 5) * 100;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = 'Question ' + n + ' of 5';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── SCORING ───────────────────────────────────────────────────
+  function scoreSauna(s) {
+    let score = 0;
+    const reasons = [];
+
+    // Q1 placement
+    if (answers.q1 === 'corner' && !s.corner) {
+      reasons.push('Wall-only placement — cannot go in a corner');
+      score -= 10;
+    }
+    if (answers.q1 === 'corner' && s.corner)  score += 2;
+    if (answers.q1 === 'wall'   && s.corner)  score -= 1;
+
+    // Q2 heater
+    if (answers.q2 === 'no' && s.blocksHeater) {
+      reasons.push('Blocks access to the gas heater');
+      score -= 10;
+    }
+    if (answers.q2 === 'yes' || answers.q2 === 'any') { /* neutral */ }
+
+    // Q3 panels
+    if (answers.q3 === 'clear'    && s.panels === 'obscured') { reasons.push('Has solid panels — not see-through'); score -= 6; }
+    if (answers.q3 === 'obscured' && s.panels === 'clear')    { score -= 2; }
+    if (answers.q3 === 'clear'    && s.panels === 'clear')    score += 2;
+    if (answers.q3 === 'obscured' && s.panels === 'obscured') score += 2;
+
+    // Q4 lighting
+    if (answers.q4 === 'full'  && s.lighting === 'basic') { score -= 2; }
+    if (answers.q4 === 'full'  && s.lighting === 'full')  score += 2;
+    if (answers.q4 === 'basic' && s.lighting === 'basic') score += 1;
+
+    // Q5 electrician
+    if (answers.q5 === 'avoid' && s.electrician)  score -= 2;
+    if (answers.q5 === 'avoid' && !s.electrician) score += 4;
+    if (answers.q5 === 'fine'  && s.electrician)  score += 1;
+
+    return { score, reasons };
+  }
+
+  // ── RESULTS ───────────────────────────────────────────────────
+  function showResults() {
+    const scored = saunas
+      .map(s => { const r = scoreSauna(s); return { ...s, score: r.score, eliminationReasons: r.reasons }; })
+      .sort((a, b) => b.score - a.score);
+
+    const matched   = scored.filter(s => s.score > -5);
+    const eliminated = scored.filter(s => s.score <= -5);
+
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-results').classList.add('active');
+    document.getElementById('progressBar').style.width = '100%';
+    document.getElementById('progressLabel').textContent = 'Done!';
+
+    const countEl    = document.getElementById('resultsCount');
+    const subtitleEl = document.getElementById('resultsSubtitle');
+
+    const list = matched.length > 0 ? matched : [scored[0]];
+    countEl.textContent = list.length + ' sauna' + (list.length !== 1 ? 's' : '') + ' match your answers';
+    subtitleEl.textContent = list.length > 1
+      ? 'These all fit what you\'re after — top of the list is the closest match.'
+      : 'This one fits your answers best.';
+
+    renderMatches(list, eliminated);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderMatches(matched, eliminated) {
+    const c = document.getElementById('matchedCards');
+    c.innerHTML = '';
+
+    matched.forEach((s, i) => {
+      const feats = s.features.map(f => {
+        const cls = f.icon === 'check' ? 'fi-check' : f.icon === 'warn' ? 'fi-warn' : 'fi-x';
+        const sym = f.icon === 'check' ? '&#10003;' : f.icon === 'warn' ? '&#9888;' : '&#10007;';
+        return '<li><span class="fi ' + cls + '">' + sym + '</span>' + esc(f.text) + '</li>';
+      }).join('');
+
+      const fb = s.imgFallback || s.img;
+      const div = document.createElement('div');
+      div.className = 'sauna-card' + (i === 0 ? ' top-pick' : '');
+      div.innerHTML =
+        '<div class="sauna-card-img">' +
+          '<img src="' + s.img + '" alt="' + esc(s.name) + '" onerror="this.onerror=null;this.src=\'' + fb + '\'" />' +
+          (i === 0 ? '<span class="badge best">Best Match</span>' : '<span class="badge">Match</span>') +
+        '</div>' +
+        '<div class="sauna-card-body">' +
+          '<p class="sauna-brand">' + esc(s.brand) + '</p>' +
+          '<h3 class="sauna-name">' + esc(s.name) + '</h3>' +
+          '<ul class="feature-list">' + feats + '</ul>' +
+          '<div class="sauna-footer"><a class="btn-view" href="' + s.url + '" target="_blank" rel="noopener">View on website \u2192</a></div>' +
+        '</div>';
+      c.appendChild(div);
+    });
+
+    const sec = document.getElementById('eliminatedSection');
+    const ec  = document.getElementById('eliminatedCards');
+    ec.innerHTML = '';
+    if (eliminated.length > 0) {
+      sec.style.display = 'block';
+      eliminated.forEach(s => {
+        const fb = s.imgFallback || s.img;
+        const div = document.createElement('div');
+        div.className = 'eliminated-card';
+        div.innerHTML =
+          '<img src="' + s.img + '" alt="' + esc(s.name) + '" onerror="this.onerror=null;this.src=\'' + fb + '\'" />' +
+          '<div><p class="eliminated-name">' + esc(s.name) + '</p>' +
+          '<p class="eliminated-reason">' + esc(s.eliminationReasons.join(' \u00b7 ')) + '</p></div>';
+        ec.appendChild(div);
+      });
+    } else {
+      sec.style.display = 'none';
+    }
+  }
+
+  function esc(str) {
+    return String(str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // ── RESTART ───────────────────────────────────────────────────
+  function restart() {
+    Object.keys(answers).forEach(k => delete answers[k]);
+    document.querySelectorAll('.choice-card').forEach(c => c.classList.remove('chosen'));
+    document.querySelectorAll('.btn-next').forEach(b => b.disabled = true);
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-1').classList.add('active');
+    document.getElementById('progressBar').style.width = '0%';
+    document.getElementById('progressLabel').textContent = 'Let\'s get started';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
