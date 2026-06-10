@@ -8,20 +8,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:       #0F0B1A;
-      --surface:  #1A1428;
-      --card:     #211932;
-      --border:   #2E2245;
-      --purple:   #7C3AED;
-      --purple-light: #A855F7;
-      --purple-glow:  #C084FC;
-      --pink:     #EC4899;
-      --text:     #EDE9F6;
-      --muted:    #8B7AA8;
-      --softer:   #4B3F6B;
-      --green:    #34D399;
-      --amber:    #FBBF24;
-      --red:      #F87171;
+      --bg:            #0F0B1A;
+      --surface:       #1A1428;
+      --card:          #211932;
+      --border:        #2E2245;
+      --purple:        #7C3AED;
+      --purple-light:  #A855F7;
+      --purple-glow:   #C084FC;
+      --pink:          #EC4899;
+      --text:          #EDE9F6;
+      --muted:         #8B7AA8;
+      --softer:        #4B3F6B;
+      --green:         #34D399;
+      --amber:         #FBBF24;
+      --red:           #F87171;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,7 +37,7 @@
     .hero {
       background: linear-gradient(160deg, #0F0B1A 0%, #1E1040 45%, #2D1B69 100%);
       text-align: center;
-      padding: 72px 24px 56px;
+      padding: 48px 20px 40px;
       position: relative;
       overflow: hidden;
     }
@@ -52,19 +52,19 @@
     }
     .hero-tag {
       display: inline-block;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--purple-glow);
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(34px, 6vw, 60px);
+      font-size: clamp(28px, 7vw, 56px);
       font-weight: 700;
       line-height: 1.1;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       position: relative;
     }
     .hero h1 em {
@@ -75,40 +75,40 @@
       background-clip: text;
     }
     .hero p {
-      font-size: 16px;
+      font-size: 15px;
       color: rgba(237,233,246,0.65);
-      max-width: 460px;
+      max-width: 420px;
       margin: 0 auto;
-      line-height: 1.65;
+      line-height: 1.6;
       position: relative;
     }
     .steam-line {
       display: flex;
       justify-content: center;
-      gap: 24px;
-      margin: 28px 0 0;
+      gap: 20px;
+      margin: 20px 0 0;
       position: relative;
     }
     .steam-line span {
-      font-size: 28px;
+      font-size: 24px;
       animation: float 3s ease-in-out infinite;
     }
     .steam-line span:nth-child(2) { animation-delay: 0.5s; }
     .steam-line span:nth-child(3) { animation-delay: 1s; }
     @keyframes float {
       0%, 100% { transform: translateY(0); opacity: 0.5; }
-      50%       { transform: translateY(-9px); opacity: 1; }
+      50%       { transform: translateY(-8px); opacity: 1; }
     }
 
     /* ── PROGRESS ── */
     .progress-wrap {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
-      padding: 12px 24px;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
+      gap: 12px;
     }
     .progress-bar-outer {
       flex: 1;
@@ -128,16 +128,16 @@
       font-size: 11px;
       color: var(--muted);
       white-space: nowrap;
-      min-width: 88px;
+      min-width: 80px;
       text-align: right;
       letter-spacing: 0.5px;
     }
 
     /* ── MAIN ── */
     main {
-      max-width: 800px;
+      max-width: 740px;
       margin: 0 auto;
-      padding: 52px 20px 80px;
+      padding: 36px 16px 60px;
     }
 
     /* ── SCREEN MANAGEMENT ── */
@@ -147,7 +147,7 @@
     /* ── QUESTION BLOCK ── */
     .question-block {
       text-align: center;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
     }
     .q-number {
       font-size: 10px;
@@ -155,39 +155,33 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--purple-light);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .q-text {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(22px, 4vw, 30px);
+      font-size: clamp(20px, 5vw, 28px);
       font-weight: 700;
       line-height: 1.25;
       color: var(--text);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .q-sub {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--muted);
-      max-width: 500px;
+      max-width: 480px;
       margin: 0 auto;
-      line-height: 1.65;
+      line-height: 1.6;
     }
 
     /* ── CHOICE GRID ── */
     .choices {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 12px;
     }
     .choices.three-col {
       grid-template-columns: 1fr 1fr 1fr;
     }
-
-    /* "Not fussed" card spans full width when it's alone in last row */
-    .choice-card.fussed {
-      grid-column: 1 / -1;
-    }
-    /* But only when it's the 3rd card in a 2-col grid OR fits naturally */
     .choices:not(.three-col) .choice-card.fussed {
       grid-column: 1 / -1;
     }
@@ -198,98 +192,91 @@
     .choice-card {
       background: var(--card);
       border: 2px solid var(--border);
-      border-radius: 16px;
+      border-radius: 14px;
       cursor: pointer;
       transition: all 0.2s ease;
       overflow: hidden;
       text-align: center;
       position: relative;
+      -webkit-tap-highlight-color: transparent;
     }
     .choice-card:hover {
       border-color: var(--purple);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 36px rgba(124,58,237,0.22);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(124,58,237,0.22);
+    }
+    .choice-card:active {
+      transform: scale(0.98);
     }
     .choice-card.chosen {
       border-color: var(--purple-light);
       background: #261B40;
-      box-shadow: 0 0 0 1px var(--purple-light), 0 8px 28px rgba(124,58,237,0.3);
+      box-shadow: 0 0 0 1px var(--purple-light), 0 6px 22px rgba(124,58,237,0.3);
     }
     .choice-card.chosen::after {
-      content: '✓';
+      content: '\2713';
       position: absolute;
-      top: 10px;
-      right: 12px;
-      width: 22px;
-      height: 22px;
+      top: 8px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
       background: var(--purple);
       color: white;
       border-radius: 50%;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 22px;
+      line-height: 20px;
+      text-align: center;
     }
 
     .choice-icon {
       width: 100%;
-      height: 120px;
+      height: 90px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 48px;
+      font-size: 40px;
       background: linear-gradient(135deg, #1A1030, #251848);
     }
     .choice-card.fussed .choice-icon {
-      height: 80px;
-      font-size: 36px;
+      height: 64px;
+      font-size: 30px;
     }
     .choice-body {
-      padding: 14px 14px 18px;
+      padding: 12px 12px 14px;
     }
     .choice-label {
       font-family: 'Playfair Display', serif;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
-    .choice-card.fussed .choice-label {
-      color: var(--muted);
-    }
+    .choice-card.fussed .choice-label { color: var(--muted); }
     .choice-card.fussed:hover .choice-label,
-    .choice-card.fussed.chosen .choice-label {
-      color: var(--purple-glow);
-    }
+    .choice-card.fussed.chosen .choice-label { color: var(--purple-glow); }
     .choice-desc {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--muted);
       line-height: 1.5;
     }
 
-    /* ── INFO NOTE ── */
-    .info-note {
-      background: #1E1535;
-      border: 1px solid #3A2860;
-      border-left: 3px solid var(--purple);
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-size: 13px;
-      color: #A99CC4;
-      line-height: 1.55;
-      margin: 20px 0 0;
+    /* ── NAV BUTTONS ── */
+    .btn-wrap {
+      text-align: center;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    /* ── NEXT BUTTON ── */
-    .btn-wrap { text-align: center; margin-top: 30px; }
     .btn-next {
-      display: inline-block;
       background: linear-gradient(135deg, var(--purple), var(--pink));
       color: white;
       border: none;
-      padding: 14px 44px;
+      padding: 14px 40px;
       border-radius: 50px;
       font-family: 'Inter', sans-serif;
       font-size: 14px;
@@ -298,6 +285,7 @@
       cursor: pointer;
       transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
       box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+      min-width: 160px;
     }
     .btn-next:hover:not(:disabled) {
       opacity: 0.9;
@@ -311,20 +299,37 @@
       box-shadow: none;
     }
 
+    .btn-back {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 13px 24px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-back:hover {
+      border-color: var(--purple);
+      color: var(--purple-glow);
+    }
+
     /* ── RESULTS ── */
     .results-intro {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
     }
     .results-intro h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 5vw, 38px);
+      font-size: clamp(22px, 5vw, 36px);
       color: var(--text);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .results-intro p {
       color: var(--muted);
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.6;
     }
     .results-count {
@@ -335,34 +340,34 @@
       font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 5px 16px;
+      padding: 5px 14px;
       border-radius: 50px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     /* ── SAUNA RESULT CARDS ── */
     .sauna-cards {
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 20px;
     }
 
     .sauna-card {
       background: var(--card);
       border: 2px solid var(--border);
-      border-radius: 20px;
+      border-radius: 18px;
       overflow: hidden;
       display: grid;
-      grid-template-columns: 270px 1fr;
+      grid-template-columns: 240px 1fr;
     }
     .sauna-card.top-pick {
       border-color: var(--purple-light);
-      box-shadow: 0 0 0 1px var(--purple), 0 12px 40px rgba(124,58,237,0.25);
+      box-shadow: 0 0 0 1px var(--purple), 0 10px 36px rgba(124,58,237,0.25);
     }
 
     .sauna-card-img {
       position: relative;
-      min-height: 220px;
+      min-height: 200px;
       background: var(--surface);
       overflow: hidden;
     }
@@ -374,15 +379,15 @@
     }
     .badge {
       position: absolute;
-      top: 12px;
-      left: 12px;
+      top: 10px;
+      left: 10px;
       background: var(--surface);
       color: var(--muted);
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 4px 12px;
+      padding: 4px 10px;
       border-radius: 50px;
       border: 1px solid var(--border);
     }
@@ -393,7 +398,7 @@
     }
 
     .sauna-card-body {
-      padding: 22px 22px 18px;
+      padding: 18px 18px 16px;
       display: flex;
       flex-direction: column;
     }
@@ -403,14 +408,14 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--purple-light);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .sauna-name {
       font-family: 'Playfair Display', serif;
-      font-size: 21px;
+      font-size: 19px;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       line-height: 1.25;
     }
 
@@ -418,18 +423,18 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 7px;
-      margin-bottom: 18px;
+      gap: 6px;
+      margin-bottom: 16px;
     }
     .feature-list li {
-      font-size: 13px;
+      font-size: 12px;
       color: #C4B8DC;
       display: flex;
       align-items: flex-start;
-      gap: 8px;
+      gap: 7px;
       line-height: 1.4;
     }
-    .fi { flex-shrink: 0; margin-top: 1px; font-style: normal; }
+    .fi { flex-shrink: 0; margin-top: 1px; }
     .fi-check { color: var(--green); }
     .fi-warn  { color: var(--amber); }
     .fi-x     { color: var(--red); }
@@ -440,9 +445,9 @@
       background: transparent;
       color: var(--purple-glow);
       text-decoration: none;
-      padding: 9px 22px;
+      padding: 8px 20px;
       border-radius: 50px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
       border: 1px solid var(--purple);
       transition: all 0.2s;
@@ -454,15 +459,15 @@
 
     /* ── ELIMINATED ── */
     .eliminated-section {
-      margin-top: 44px;
-      padding-top: 32px;
+      margin-top: 40px;
+      padding-top: 28px;
       border-top: 1px solid var(--border);
     }
     .eliminated-section h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 18px;
+      font-size: 17px;
       color: var(--softer);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       text-align: center;
     }
     .eliminated-list {
@@ -474,30 +479,30 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 14px 18px;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       opacity: 0.6;
     }
     .eliminated-card img {
-      width: 70px;
-      height: 50px;
+      width: 64px;
+      height: 46px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 7px;
       flex-shrink: 0;
     }
-    .eliminated-name { font-weight: 500; font-size: 14px; color: var(--text); }
-    .eliminated-reason { font-size: 12px; color: var(--muted); margin-top: 3px; }
+    .eliminated-name { font-weight: 500; font-size: 13px; color: var(--text); }
+    .eliminated-reason { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
     /* ── RESTART ── */
     .btn-restart {
       display: inline-block;
-      margin-top: 40px;
+      margin-top: 36px;
       background: transparent;
       color: var(--muted);
       border: 1px solid var(--border);
-      padding: 11px 32px;
+      padding: 10px 28px;
       border-radius: 50px;
       font-family: 'Inter', sans-serif;
       font-size: 13px;
@@ -510,13 +515,22 @@
       color: var(--purple-glow);
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      .choices { grid-template-columns: 1fr; }
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      main { padding: 24px 12px 48px; }
+
+      .choices { grid-template-columns: 1fr; gap: 10px; }
       .choices.three-col { grid-template-columns: 1fr; }
       .choice-card.fussed { grid-column: auto; }
+      .choice-icon { height: 72px; font-size: 34px; }
+      .choice-card.fussed .choice-icon { height: 56px; }
+
       .sauna-card { grid-template-columns: 1fr; }
-      .sauna-card-img { height: 190px; min-height: unset; }
+      .sauna-card-img { height: 180px; min-height: unset; }
+
+      .btn-next { width: 100%; min-width: unset; }
+      .btn-back  { width: 100%; }
+      .btn-wrap  { flex-direction: column-reverse; gap: 8px; }
     }
   </style>
 </head>
@@ -545,7 +559,7 @@
   <!-- ══════════════ Q1 ══════════════ -->
   <div class="screen active" id="screen-1">
     <div class="question-block">
-      <p class="q-number">Question 1 of 6</p>
+      <p class="q-number">Question 1 of 5</p>
       <h2 class="q-text">Where would you want the sauna to sit?</h2>
       <p class="q-sub">We have a gas heater on one wall and a sliding door + window on another — some saunas can only go in specific spots.</p>
     </div>
@@ -580,61 +594,26 @@
   <!-- ══════════════ Q2 ══════════════ -->
   <div class="screen" id="screen-2">
     <div class="question-block">
-      <p class="q-number">Question 2 of 6</p>
-      <h2 class="q-text">Blocking the gas heater — deal breaker?</h2>
-      <p class="q-sub">A couple of saunas need to sit in front of the gas heater. Would that bother you?</p>
-    </div>
-    <div class="choices">
-      <div class="choice-card" data-value="no" onclick="pick(this,'q2')">
-        <div class="choice-icon">🚫</div>
-        <div class="choice-body">
-          <p class="choice-label">Yes, don't block it</p>
-          <p class="choice-desc">I want the heater fully accessible — cross those off the list</p>
-        </div>
-      </div>
-      <div class="choice-card" data-value="yes" onclick="pick(this,'q2')">
-        <div class="choice-icon">👍</div>
-        <div class="choice-body">
-          <p class="choice-label">Fine by me</p>
-          <p class="choice-desc">We can work around it — the sauna is the priority</p>
-        </div>
-      </div>
-      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q2')">
-        <div class="choice-icon">🤷</div>
-        <div class="choice-body">
-          <p class="choice-label">Not fussed</p>
-          <p class="choice-desc">Doesn't change anything for me</p>
-        </div>
-      </div>
-    </div>
-    <div class="btn-wrap">
-      <button class="btn-next" id="next2" disabled onclick="goTo(3)">Next →</button>
-    </div>
-  </div>
-
-  <!-- ══════════════ Q3 ══════════════ -->
-  <div class="screen" id="screen-3">
-    <div class="question-block">
-      <p class="q-number">Question 3 of 6</p>
+      <p class="q-number">Question 2 of 5</p>
       <h2 class="q-text">Glass panels — see-through or solid?</h2>
       <p class="q-sub">Some saunas have clear glass. Others are fully opaque. Which feels more like you?</p>
     </div>
     <div class="choices three-col">
-      <div class="choice-card" data-value="clear" onclick="pick(this,'q3')">
+      <div class="choice-card" data-value="clear" onclick="pick(this,'q2')">
         <div class="choice-icon">🪟</div>
         <div class="choice-body">
           <p class="choice-label">Clear glass</p>
           <p class="choice-desc">Open and airy — less enclosed</p>
         </div>
       </div>
-      <div class="choice-card" data-value="obscured" onclick="pick(this,'q3')">
+      <div class="choice-card" data-value="obscured" onclick="pick(this,'q2')">
         <div class="choice-icon">🌫️</div>
         <div class="choice-body">
           <p class="choice-label">Solid panels</p>
           <p class="choice-desc">Private and cosy — proper sanctuary vibes</p>
         </div>
       </div>
-      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q3')">
+      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q2')">
         <div class="choice-icon">🤷</div>
         <div class="choice-body">
           <p class="choice-label">Not fussed</p>
@@ -643,33 +622,34 @@
       </div>
     </div>
     <div class="btn-wrap">
-      <button class="btn-next" id="next3" disabled onclick="goTo(4)">Next →</button>
+      <button class="btn-back" onclick="goTo(1)">← Back</button>
+      <button class="btn-next" id="next2" disabled onclick="goTo(3)">Next →</button>
     </div>
   </div>
 
-  <!-- ══════════════ Q4 ══════════════ -->
-  <div class="screen" id="screen-4">
+  <!-- ══════════════ Q3 ══════════════ -->
+  <div class="screen" id="screen-3">
     <div class="question-block">
-      <p class="q-number">Question 4 of 6</p>
+      <p class="q-number">Question 3 of 5</p>
       <h2 class="q-text">How much mood lighting do you want?</h2>
       <p class="q-sub">Chromotherapy lights set the atmosphere. Some have 7 colours, others have 10 colours + 17 separate backlight moods.</p>
     </div>
     <div class="choices three-col">
-      <div class="choice-card" data-value="basic" onclick="pick(this,'q4')">
+      <div class="choice-card" data-value="basic" onclick="pick(this,'q3')">
         <div class="choice-icon">🕯️</div>
         <div class="choice-body">
           <p class="choice-label">Keep it simple</p>
           <p class="choice-desc">A few colours is all I need</p>
         </div>
       </div>
-      <div class="choice-card" data-value="full" onclick="pick(this,'q4')">
+      <div class="choice-card" data-value="full" onclick="pick(this,'q3')">
         <div class="choice-icon">🌈</div>
         <div class="choice-body">
           <p class="choice-label">More the better</p>
           <p class="choice-desc">Loads of colour modes to play with</p>
         </div>
       </div>
-      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q4')">
+      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q3')">
         <div class="choice-icon">🤷</div>
         <div class="choice-body">
           <p class="choice-label">Not fussed</p>
@@ -678,33 +658,34 @@
       </div>
     </div>
     <div class="btn-wrap">
-      <button class="btn-next" id="next4" disabled onclick="goTo(5)">Next →</button>
+      <button class="btn-back" onclick="goTo(2)">← Back</button>
+      <button class="btn-next" id="next3" disabled onclick="goTo(4)">Next →</button>
     </div>
   </div>
 
-  <!-- ══════════════ Q5 ══════════════ -->
-  <div class="screen" id="screen-5">
+  <!-- ══════════════ Q4 ══════════════ -->
+  <div class="screen" id="screen-4">
     <div class="question-block">
-      <p class="q-number">Question 5 of 6</p>
+      <p class="q-number">Question 4 of 5</p>
       <h2 class="q-text">Electrician install — does the cost matter?</h2>
-      <p class="q-sub">Most saunas need a licensed electrician to install a dedicated circuit. One option just plugs straight into a standard power point and skips that cost entirely.</p>
+      <p class="q-sub">Most saunas need a licensed electrician for a dedicated circuit. Two options plug straight into a standard power point and skip that cost entirely.</p>
     </div>
     <div class="choices">
-      <div class="choice-card" data-value="fine" onclick="pick(this,'q5')">
+      <div class="choice-card" data-value="fine" onclick="pick(this,'q4')">
         <div class="choice-icon">🔌</div>
         <div class="choice-body">
           <p class="choice-label">Fine — worth it</p>
           <p class="choice-desc">One-time install cost is no big deal if the sauna is right</p>
         </div>
       </div>
-      <div class="choice-card" data-value="avoid" onclick="pick(this,'q5')">
+      <div class="choice-card" data-value="avoid" onclick="pick(this,'q4')">
         <div class="choice-icon">💰</div>
         <div class="choice-body">
           <p class="choice-label">Prefer to avoid it</p>
           <p class="choice-desc">Plug-and-play would be a nice bonus</p>
         </div>
       </div>
-      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q5')">
+      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q4')">
         <div class="choice-icon">🤷</div>
         <div class="choice-body">
           <p class="choice-label">Not fussed</p>
@@ -713,33 +694,34 @@
       </div>
     </div>
     <div class="btn-wrap">
-      <button class="btn-next" id="next5" disabled onclick="goTo(6)">Next →</button>
+      <button class="btn-back" onclick="goTo(3)">← Back</button>
+      <button class="btn-next" id="next4" disabled onclick="goTo(5)">Next →</button>
     </div>
   </div>
 
-  <!-- ══════════════ Q6 ══════════════ -->
-  <div class="screen" id="screen-6">
+  <!-- ══════════════ Q5 ══════════════ -->
+  <div class="screen" id="screen-5">
     <div class="question-block">
-      <p class="q-number">Question 6 of 6</p>
+      <p class="q-number">Question 5 of 5</p>
       <h2 class="q-text">Full spectrum or far infrared?</h2>
-      <p class="q-sub">Full spectrum saunas run hotter and are considered more premium — they cover near, mid and far infrared. Far infrared is still highly effective and more common. Does it matter to you?</p>
+      <p class="q-sub">Full spectrum saunas run hotter and are more premium — they cover near, mid and far infrared. Far infrared is still highly effective and more common.</p>
     </div>
     <div class="choices three-col">
-      <div class="choice-card" data-value="yes" onclick="pick(this,'q6')">
+      <div class="choice-card" data-value="yes" onclick="pick(this,'q5')">
         <div class="choice-icon">🔥</div>
         <div class="choice-body">
-          <p class="choice-label">Yes — full spectrum</p>
+          <p class="choice-label">Full spectrum</p>
           <p class="choice-desc">I want the hottest, most premium option</p>
         </div>
       </div>
-      <div class="choice-card" data-value="no" onclick="pick(this,'q6')">
+      <div class="choice-card" data-value="no" onclick="pick(this,'q5')">
         <div class="choice-icon">♨️</div>
         <div class="choice-body">
           <p class="choice-label">Far infrared is fine</p>
-          <p class="choice-desc">No need for full spectrum — far infrared does the job</p>
+          <p class="choice-desc">No need for full spectrum — it does the job</p>
         </div>
       </div>
-      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q6')">
+      <div class="choice-card fussed" data-value="any" onclick="pick(this,'q5')">
         <div class="choice-icon">🤷</div>
         <div class="choice-body">
           <p class="choice-label">Not fussed</p>
@@ -748,7 +730,8 @@
       </div>
     </div>
     <div class="btn-wrap">
-      <button class="btn-next" id="next6" disabled onclick="showResults()">See my sauna 🎁</button>
+      <button class="btn-back" onclick="goTo(4)">← Back</button>
+      <button class="btn-next" id="next5" disabled onclick="showResults()">See my sauna 🎁</button>
     </div>
   </div>
 
@@ -781,17 +764,17 @@
       img: 'https://kivawellness.com.au/cdn/shop/files/rise4p.webp?v=1774428789',
       url: 'https://kivawellness.com.au/products/kiva-wellness-far-infrared-sauna-4-person',
       features: [
-        { icon: 'warn', text: 'Needs a licensed electrician to install' },
-        { icon: 'warn', text: 'Sits in front of the gas heater' },
+        { icon: 'warn',  text: 'Needs a licensed electrician to install' },
+        { icon: 'warn',  text: 'Sits in front of the gas heater' },
         { icon: 'check', text: 'Two benches — more seating options' },
         { icon: 'check', text: '7 chromotherapy colours' },
         { icon: 'check', text: 'Clear see-through glass panels' },
         { icon: 'check', text: 'Bluetooth speaker' },
-        { icon: 'check', text: '3500W — heats up to 75°C' },
+        { icon: 'check', text: '3500W — heats up to 75\u00b0C' },
         { icon: 'check', text: 'Canadian hemlock wood' },
         { icon: 'check', text: 'Lifetime heater warranty' },
-        { icon: 'x',    text: 'Far infrared only — not full spectrum' },
-        { icon: 'x',    text: 'Flat wall placement — cannot go in a corner' },
+        { icon: 'x',     text: 'Far infrared only — not full spectrum' },
+        { icon: 'x',     text: 'Flat wall placement — cannot go in a corner' },
       ],
       corner: false, blocksHeater: true, panels: 'clear', lighting: 'basic', electrician: true, fullSpectrum: false,
     },
@@ -802,15 +785,15 @@
       img: 'https://kivawellness.com.au/cdn/shop/files/10_1.webp?v=1768372158',
       url: 'https://kivawellness.com.au/products/radiance-full-spectrum-sauna-4-person',
       features: [
-        { icon: 'warn', text: 'Needs a licensed electrician to install' },
+        { icon: 'warn',  text: 'Needs a licensed electrician to install' },
         { icon: 'check', text: 'Corner placement — tucks away neatly' },
-        { icon: 'warn', text: 'Will cover the window if placed in left corner' },
+        { icon: 'warn',  text: 'Will cover the window if placed in left corner' },
         { icon: 'check', text: 'Only partially covers the sliding door if in right corner' },
         { icon: 'check', text: '10 chromo colours + 17 mood backlights' },
         { icon: 'check', text: 'Clear see-through glass panels' },
         { icon: 'check', text: 'Full spectrum infrared — near, mid & far' },
         { icon: 'check', text: 'Bluetooth speaker' },
-        { icon: 'check', text: '2620W — heats up to 70°C' },
+        { icon: 'check', text: '2620W — heats up to 70\u00b0C' },
         { icon: 'check', text: 'Canadian hemlock wood' },
         { icon: 'check', text: 'Lifetime heater warranty' },
         { icon: 'check', text: 'Single bench' },
@@ -824,15 +807,15 @@
       img: 'https://kivawellness.com.au/cdn/shop/files/KivaWellnessCommercialFrontView_110c6a7a-1e6b-4458-8eeb-001109ad9418.webp?v=1768534190&width=2000',
       url: 'https://kivawellness.com.au/products/radiance-4-person-commercial-grade-full-spectrum-infrared-sauna',
       features: [
-        { icon: 'warn', text: 'Needs a licensed electrician to install' },
+        { icon: 'warn',  text: 'Needs a licensed electrician to install' },
         { icon: 'check', text: 'Corner placement — tucks away neatly' },
-        { icon: 'warn', text: 'Will cover the window if placed in left corner' },
+        { icon: 'warn',  text: 'Will cover the window if placed in left corner' },
         { icon: 'check', text: 'Only partially covers the sliding door if in right corner' },
         { icon: 'check', text: '10 chromo colours + 17 mood backlights' },
         { icon: 'check', text: 'Solid obscured panels — full privacy inside' },
         { icon: 'check', text: 'Full spectrum infrared — near, mid & far' },
         { icon: 'check', text: 'Bluetooth speaker' },
-        { icon: 'check', text: '2620W — heats up to 70°C' },
+        { icon: 'check', text: '2620W — heats up to 70\u00b0C' },
         { icon: 'check', text: 'Canadian hemlock wood' },
         { icon: 'check', text: 'Lifetime heater warranty' },
         { icon: 'check', text: 'Single bench' },
@@ -847,8 +830,8 @@
       url: 'https://www.halospas.com.au/halo-sauna-2i-sauna-4i/',
       features: [
         { icon: 'check', text: 'No electrician needed — standard 10A power point' },
-        { icon: 'warn', text: 'Sits in front of the gas heater' },
-        { icon: 'warn', text: 'Will cover the window if placed in left corner' },
+        { icon: 'warn',  text: 'Sits in front of the gas heater' },
+        { icon: 'warn',  text: 'Will cover the window if placed in left corner' },
         { icon: 'check', text: 'Only partially covers the sliding door if in right corner' },
         { icon: 'check', text: 'Multiple colour options' },
         { icon: 'check', text: 'Bluetooth speaker' },
@@ -868,11 +851,11 @@
       features: [
         { icon: 'check', text: 'No electrician needed — standard power point' },
         { icon: 'check', text: 'Corner placement — tucks away neatly' },
-        { icon: 'warn', text: 'Will cover the window if placed in left corner' },
+        { icon: 'warn',  text: 'Will cover the window if placed in left corner' },
         { icon: 'check', text: 'Only partially covers the sliding door if in right corner' },
         { icon: 'check', text: '10 colour options' },
         { icon: 'check', text: 'Bluetooth speaker' },
-        { icon: 'check', text: 'Heats up to 70°C' },
+        { icon: 'check', text: 'Heats up to 70\u00b0C' },
         { icon: 'check', text: 'Canadian hemlock wood' },
         { icon: 'check', text: 'Single bench' },
       ],
@@ -897,9 +880,9 @@
   function goTo(n) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById('screen-' + n).classList.add('active');
-    const pct = ((n - 1) / 6) * 100;
+    const pct = ((n - 1) / 5) * 100;
     document.getElementById('progressBar').style.width = pct + '%';
-    document.getElementById('progressLabel').textContent = 'Question ' + n + ' of 6';
+    document.getElementById('progressLabel').textContent = 'Question ' + n + ' of 5';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -908,42 +891,36 @@
     let score = 0;
     const reasons = [];
 
-    // Q1 placement
+    // Q1 placement + heater (combined)
     if (answers.q1 === 'corner' && !s.corner) {
       reasons.push('Wall-only placement — cannot go in a corner');
       score -= 10;
     }
-    if (answers.q1 === 'corner' && s.corner)  score += 2;
-    if (answers.q1 === 'wall'   && s.corner)  score -= 1;
+    if (answers.q1 === 'wall' && s.blocksHeater) score += 1; // picked heater wall, sauna fits there
+    if (answers.q1 === 'wall' && !s.blocksHeater) score -= 1; // corner sauna on heater wall is awkward
+    if (answers.q1 === 'corner' && s.corner) score += 2;
 
-    // Q2 heater
-    if (answers.q2 === 'no' && s.blocksHeater) {
-      reasons.push('Blocks access to the gas heater');
-      score -= 10;
-    }
-    if (answers.q2 === 'yes' || answers.q2 === 'any') { /* neutral */ }
+    // Q2 panels
+    if (answers.q2 === 'clear'    && s.panels === 'obscured') { reasons.push('Has solid panels — not see-through'); score -= 6; }
+    if (answers.q2 === 'obscured' && s.panels === 'clear')    score -= 2;
+    if (answers.q2 === 'clear'    && s.panels === 'clear')    score += 2;
+    if (answers.q2 === 'obscured' && s.panels === 'obscured') score += 2;
 
-    // Q3 panels
-    if (answers.q3 === 'clear'    && s.panels === 'obscured') { reasons.push('Has solid panels — not see-through'); score -= 6; }
-    if (answers.q3 === 'obscured' && s.panels === 'clear')    { score -= 2; }
-    if (answers.q3 === 'clear'    && s.panels === 'clear')    score += 2;
-    if (answers.q3 === 'obscured' && s.panels === 'obscured') score += 2;
+    // Q3 lighting
+    if (answers.q3 === 'full'  && s.lighting === 'basic') score -= 2;
+    if (answers.q3 === 'full'  && s.lighting === 'full')  score += 2;
+    if (answers.q3 === 'basic' && s.lighting === 'basic') score += 1;
 
-    // Q4 lighting
-    if (answers.q4 === 'full'  && s.lighting === 'basic') { score -= 2; }
-    if (answers.q4 === 'full'  && s.lighting === 'full')  score += 2;
-    if (answers.q4 === 'basic' && s.lighting === 'basic') score += 1;
+    // Q4 electrician
+    if (answers.q4 === 'avoid' && s.electrician)  score -= 2;
+    if (answers.q4 === 'avoid' && !s.electrician) score += 4;
+    if (answers.q4 === 'fine'  && s.electrician)  score += 1;
 
-    // Q5 electrician
-    if (answers.q5 === 'avoid' && s.electrician)  score -= 2;
-    if (answers.q5 === 'avoid' && !s.electrician) score += 4;
-    if (answers.q5 === 'fine'  && s.electrician)  score += 1;
-
-    // Q6 full spectrum
-    if (answers.q6 === 'yes' && !s.fullSpectrum) { reasons.push('Far infrared only — not full spectrum'); score -= 6; }
-    if (answers.q6 === 'yes' &&  s.fullSpectrum) score += 3;
-    if (answers.q6 === 'no'  &&  s.fullSpectrum) score -= 1;
-    if (answers.q6 === 'no'  && !s.fullSpectrum) score += 1;
+    // Q5 full spectrum
+    if (answers.q5 === 'yes' && !s.fullSpectrum) { reasons.push('Far infrared only — not full spectrum'); score -= 6; }
+    if (answers.q5 === 'yes' &&  s.fullSpectrum) score += 3;
+    if (answers.q5 === 'no'  &&  s.fullSpectrum) score -= 1;
+    if (answers.q5 === 'no'  && !s.fullSpectrum) score += 1;
 
     return { score, reasons };
   }
@@ -954,7 +931,7 @@
       .map(s => { const r = scoreSauna(s); return { ...s, score: r.score, eliminationReasons: r.reasons }; })
       .sort((a, b) => b.score - a.score);
 
-    const matched   = scored.filter(s => s.score > -5);
+    const matched    = scored.filter(s => s.score > -5);
     const eliminated = scored.filter(s => s.score <= -5);
 
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -962,12 +939,9 @@
     document.getElementById('progressBar').style.width = '100%';
     document.getElementById('progressLabel').textContent = 'Done!';
 
-    const countEl    = document.getElementById('resultsCount');
-    const subtitleEl = document.getElementById('resultsSubtitle');
-
     const list = matched.length > 0 ? matched : [scored[0]];
-    countEl.textContent = list.length + ' sauna' + (list.length !== 1 ? 's' : '') + ' match your answers';
-    subtitleEl.textContent = list.length > 1
+    document.getElementById('resultsCount').textContent = list.length + ' sauna' + (list.length !== 1 ? 's' : '') + ' match your answers';
+    document.getElementById('resultsSubtitle').textContent = list.length > 1
       ? 'These all fit what you\'re after — top of the list is the closest match.'
       : 'This one fits your answers best.';
 
@@ -978,14 +952,12 @@
   function renderMatches(matched, eliminated) {
     const c = document.getElementById('matchedCards');
     c.innerHTML = '';
-
     matched.forEach((s, i) => {
       const feats = s.features.map(f => {
         const cls = f.icon === 'check' ? 'fi-check' : f.icon === 'warn' ? 'fi-warn' : 'fi-x';
         const sym = f.icon === 'check' ? '&#10003;' : f.icon === 'warn' ? '&#9888;' : '&#10007;';
         return '<li><span class="fi ' + cls + '">' + sym + '</span>' + esc(f.text) + '</li>';
       }).join('');
-
       const fb = s.imgFallback || s.img;
       const div = document.createElement('div');
       div.className = 'sauna-card' + (i === 0 ? ' top-pick' : '');
